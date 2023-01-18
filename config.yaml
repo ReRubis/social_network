@@ -1,0 +1,5 @@
+# Secret key for JWT
+secret_key: 124sajajfgSAf12astASt21y61243sdg21y210wqt12DGBDBDBskdcaa1y12DDASlLJO 
+
+# Command to run the app: 
+# uvicorn app.main:app --reload
