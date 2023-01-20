@@ -21,7 +21,7 @@ If it doesn't run the command:
 ```
 3. Run the uvicorn
 ```sh
-uvicorn app.main:app --reload
+uvicorn socnet.main:app --reload
 ```
 
 4. When it's running, it's possible to open the automated documentation. 
