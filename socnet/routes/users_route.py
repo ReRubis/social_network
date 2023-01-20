@@ -1,13 +1,13 @@
 from fastapi import APIRouter
 from datetime import timedelta
 from fastapi import Depends, HTTPException, status
-from ..etc.readyaml import read_config_yaml
-from ..models.auth_models import Token, TokenData, User, UserInDB
+from socnet.etc.readyaml import read_config_yaml
+from socnet.models.auth_models import Token, TokenData, User, UserInDB
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from ..depend import authdepen
-from ..DB_manipulations.db_session import session_init
-from ..DB_manipulations.db_methods import UserRepository
-from ..DB_manipulations.db import User as UserDB
+from socnet.depend import authdepen
+from socnet.DB_manipulations.db_session import session_init
+from socnet.DB_manipulations.db_methods import UserRepository
+from socnet.DB_manipulations.db import User as UserDB
 
 ALGIRITHM = 'HS256'
 ACCESS_TOKEN_EXPIRE_MINUTES = 30

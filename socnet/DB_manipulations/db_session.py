@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import database_exists, create_database
-from .db import Base
+from socnet.DB_manipulations.db import Base
 
 
 def get_engine(user, passwd, db):

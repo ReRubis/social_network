@@ -1,5 +1,6 @@
-from .db import Post, User, Reaction
 import datetime
+
+from socnet.DB_manipulations.db import Post, User, Reaction
 
 
 class BaseRepository():

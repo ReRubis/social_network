@@ -6,9 +6,9 @@ dev = [
 ]
 
 [project]
-name = ""
-version = ""
-description = ""
+name = "socnet"
+version = "0.1.0"
+description = "simple social network"
 authors = [
     {name = "ReRubis", email = "slesarenkod@gmail.com"},
 ]
