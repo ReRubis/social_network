@@ -1,10 +1,10 @@
 from fastapi import APIRouter
 from fastapi import Depends, HTTPException,  status
-from ..depend.authdepen import get_current_user
-from ..DB_manipulations.db_methods import PostRepository, ReactionRepository
-from ..DB_manipulations.db_session import session_init
-from ..DB_manipulations.db import User, Post, Reaction
-from ..models import req_models
+from socnet.depend.authdepen import get_current_user
+from socnet.DB_manipulations.db_methods import PostRepository, ReactionRepository
+from socnet.DB_manipulations.db_session import session_init
+from socnet.DB_manipulations.db import User, Post, Reaction
+from socnet.models import req_models
 
 
 def build_post_repository(session=Depends(session_init)):

@@ -1,10 +1,12 @@
+import datetime
+import uuid
+
+
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
 from sqlalchemy import Column, Integer, String, Float,\
     Boolean, UniqueConstraint, Identity, DateTime, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
-import datetime
-import uuid
 
 
 @as_declarative()
