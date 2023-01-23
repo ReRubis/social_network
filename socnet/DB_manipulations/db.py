@@ -1,11 +1,10 @@
 import datetime
 import uuid
 
-
-from sqlalchemy.ext.declarative import as_declarative, declared_attr
-from sqlalchemy import Column, Integer, String, Float,\
-    Boolean, UniqueConstraint, Identity, DateTime, ForeignKey
+from sqlalchemy import (Boolean, Column, DateTime, Float, ForeignKey, Identity,
+                        Integer, String, UniqueConstraint)
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.ext.declarative import as_declarative, declared_attr
 from sqlalchemy.sql import func
 
 

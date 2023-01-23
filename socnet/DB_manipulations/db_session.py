@@ -1,7 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy_utils import database_exists, create_database
+from sqlalchemy_utils import create_database, database_exists
+
 from socnet.DB_manipulations.db import Base
+from socnet.etc.readyaml import read_config_yaml
 
 
 def get_engine(user, passwd, db):
@@ -25,9 +27,12 @@ def get_session(engine):
 
 
 def session_init():
-    engine = get_engine('postgres',
-                        'postgres',
-                        'postgres',)
+
+    engine = get_engine(
+        read_config_yaml()['DB_USER'],
+        read_config_yaml()['DB_PASSWORD'],
+        read_config_yaml()['DB_NAME']
+    )
 
     Base.metadata.create_all(engine)
     session = get_session(engine)

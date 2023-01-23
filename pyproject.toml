@@ -3,6 +3,7 @@
 dev = [
     "flake8>=6.0.0",
     "autopep8>=2.0.1",
+    "isort>=5.11.4",
 ]
 
 [project]
@@ -26,3 +27,6 @@ dependencies = [
 ]
 requires-python = ">=3.11"
 license = {text = "MIT"}
+
+[tool.poetry.scripts]
+isort = "isort:run"
