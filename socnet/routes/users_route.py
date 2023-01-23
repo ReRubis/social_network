@@ -1,13 +1,14 @@
-from fastapi import APIRouter
 from datetime import timedelta
-from fastapi import Depends, HTTPException, status
-from socnet.etc.readyaml import read_config_yaml
-from socnet.models.auth_models import Token, TokenData, User, UserInDB
+
+from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from socnet.depend import authdepen
-from socnet.DB_manipulations.db_session import session_init
-from socnet.DB_manipulations.db_methods import UserRepository
+
 from socnet.DB_manipulations.db import User as UserDB
+from socnet.DB_manipulations.db_methods import UserRepository
+from socnet.DB_manipulations.db_session import session_init
+from socnet.depend import authdepen
+from socnet.etc.readyaml import read_config_yaml
+from socnet.models.auth_models import User
 
 ALGIRITHM = 'HS256'
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
@@ -32,6 +33,7 @@ async def register(
     """Register the user with passed down login and password"""
 
     list_of_users = {}
+    user: User
 
     for user in repo.get_list():
         user_to_add = {}
@@ -68,6 +70,7 @@ async def login(
     """Returns JWT token when passed login and password"""
     list_of_users = {}
 
+    user: User
     for user in repo.get_list():
         user_to_add = {}
         user_to_add['id'] = str(user.id)

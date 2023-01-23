@@ -1,9 +1,10 @@
-from fastapi import APIRouter
-from fastapi import Depends, HTTPException,  status
-from socnet.depend.authdepen import get_current_user
-from socnet.DB_manipulations.db_methods import PostRepository, ReactionRepository
+from fastapi import APIRouter, Depends, HTTPException, status
+
+from socnet.DB_manipulations.db import Post, Reaction, User
+from socnet.DB_manipulations.db_methods import (PostRepository,
+                                                ReactionRepository)
 from socnet.DB_manipulations.db_session import session_init
-from socnet.DB_manipulations.db import User, Post, Reaction
+from socnet.depend.authdepen import get_current_user
 from socnet.models import req_models
 
 
@@ -46,6 +47,7 @@ async def get_posts(
     """Returns  a list of PostObjects"""
 
     list_of_posts = []
+    post: Post
     for post in repo.get_list():
         spec_post = {}
         spec_post['id'] = str(post.id)
@@ -78,7 +80,7 @@ async def get_post(
 ):
     """Returns a dict of a specified post, with like and dis count"""
     spec_post = {}
-
+    post: Post
     for post in repo.get_list():
         if str(post.id) == str(post_id):
             spec_post = {}
@@ -124,6 +126,7 @@ async def delete_post(
     current_user: User = Depends(get_current_user),
 ):
     """Deletes a post with a specified id"""
+    post: Post
     for post in repo.get_list():
         if str(post.id) == str(post_id):
             if str(post.user_id) == current_user.id:
@@ -164,6 +167,7 @@ async def add_reaction(
     posts = rearepo.get_post_reactions(post_id)
 
     post_to_update = None
+    post: Post
     if posts:
         for post in posts:
             if str(post.user_id) == str(current_user.id):
