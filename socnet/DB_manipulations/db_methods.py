@@ -1,5 +1,7 @@
 import datetime
 
+from socnet.DB_manipulations.db_session import s
+
 from socnet.DB_manipulations.db import Post, Reaction, User
 
 
@@ -71,7 +73,7 @@ class ReactionRepository(BaseRepository):
     #     """Returns a list of specified post reactions"""
     #     return self.query.get(post_id)
 
-    def get_post_reactions(self, postid):
+    def get_post_reactions(self, postid) -> list[Post]:
         """
         Returns a list of all non-removed items
         """
