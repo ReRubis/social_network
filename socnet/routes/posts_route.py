@@ -147,15 +147,16 @@ async def add_reaction(
     """Adds reaction to a post, currently supports only 'like' and 'dlike' """
     reaction_to_give = Reaction()
 
-    if passed_reaction.reaction == 'like':
-        reaction_to_give.reaction = 'like'
-    elif passed_reaction.reaction == 'dlike':
-        reaction_to_give.reaction = 'dlike'
-    else:
-        raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail='Incorrect reaction',
-        )
+    match passed_reaction.reaction:
+        case 'like':
+            reaction_to_give.reaction = 'like'
+        case 'dlike':
+            reaction_to_give.reaction = 'dlike'
+        case _:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                detail='Incorrect reaction',
+            )
 
     the_post = repo.get(post_id)
     if str(the_post.user_id) == current_user.id:
@@ -167,10 +168,13 @@ async def add_reaction(
     posts = rearepo.get_post_reactions(post_id)
 
     post_to_update = None
-    post: Post
+
+  
+
     if posts:
         for post in posts:
             if str(post.user_id) == str(current_user.id):
+                
                 post_to_update = post
                 post_to_update.reaction = passed_reaction.reaction
                 rearepo.update_reaction(post_to_update)
