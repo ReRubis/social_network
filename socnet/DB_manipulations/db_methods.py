@@ -11,7 +11,7 @@ class BaseRepository():
     def __init__(self, session):
         self.session = session
 
-    def get(self, id):
+    def get(self, id) -> list:
         """
         Returns a content with a certain id
         """
@@ -58,7 +58,7 @@ class UserRepository(BaseRepository):
 class PostRepository(BaseRepository):
     __model__ = Post
 
-    def update_post(self, model):
+    def update_post(self, model) -> Post:
         model_to_update = self.get(model.id)
         model_to_update.text = model.text
 
@@ -79,7 +79,7 @@ class ReactionRepository(BaseRepository):
         """
         return self.query.filter_by(post_id=postid).all()
 
-    def update_reaction(self, model):
+    def update_reaction(self, model) -> Post:
         model_to_update = self.get(model.id)
         model_to_update.reaction = model.reaction
 

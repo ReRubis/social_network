@@ -169,12 +169,10 @@ async def add_reaction(
 
     post_to_update = None
 
-  
-
     if posts:
         for post in posts:
             if str(post.user_id) == str(current_user.id):
-                
+
                 post_to_update = post
                 post_to_update.reaction = passed_reaction.reaction
                 rearepo.update_reaction(post_to_update)
