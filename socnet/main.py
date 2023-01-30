@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from socnet.routes import posts_route, users_route
+from socnet.etc.logger import create_logs_yaml
 
 
 def app_factory():
@@ -29,6 +30,8 @@ def app_factory():
     # Includes routes to the app.
     app.include_router(users_route.router)
     app.include_router(posts_route.router)
+
+    create_logs_yaml()
 
     return app
 
