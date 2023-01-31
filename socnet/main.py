@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from socnet.routes import posts_route, users_route
 from socnet.etc.logger import create_logs_yaml
+from socnet.routes import posts_route, users_route
 
 
 def app_factory():

@@ -5,6 +5,7 @@ from socnet.DB_manipulations.db_methods import (PostRepository,
                                                 ReactionRepository)
 from socnet.DB_manipulations.db_session import session_init
 from socnet.depend.authdepen import get_current_user
+from socnet.etc.logger import logsomething
 from socnet.models import req_models
 
 
@@ -38,6 +39,7 @@ async def create_post(
 
 
 @router.get('/')
+@logsomething
 async def get_posts(
         repo: PostRepository = Depends(build_post_repository),
         rearepo: ReactionRepository = Depends(build_react_repository),
@@ -70,7 +72,6 @@ async def get_posts(
     return list_of_posts
 
 
-@router.get('/{post_id}')
 async def get_post(
     post_id,
     repo: PostRepository = Depends(build_post_repository),

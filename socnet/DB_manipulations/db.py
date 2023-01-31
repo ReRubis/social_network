@@ -1,16 +1,15 @@
 import datetime
 import uuid
 
-from sqlalchemy import (Column, DateTime, ForeignKey,
-                        String)
+from sqlalchemy import Column, DateTime, ForeignKey, String
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.ext.declarative import declared_attr, declarative_base
+from sqlalchemy.ext.declarative import (as_declarative, declarative_base,
+                                        declared_attr)
 from sqlalchemy.sql import func
 
-_Base = declarative_base()
 
-
-class Base(_Base):
+@as_declarative()
+class Base(object):
     @declared_attr
     def __tablename__(cls):
         return f'{cls.__name__.lower()}s'

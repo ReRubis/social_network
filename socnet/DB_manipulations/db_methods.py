@@ -1,7 +1,5 @@
 import datetime
 
-from socnet.DB_manipulations.db_session import s
-
 from socnet.DB_manipulations.db import Post, Reaction, User
 
 

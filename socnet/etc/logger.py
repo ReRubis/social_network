@@ -1,7 +1,9 @@
+import asyncio
 import os
-import yaml
-from typing import Callable
 from datetime import datetime
+from typing import Callable
+
+import yaml
 
 
 def create_logs_yaml():
@@ -14,23 +16,13 @@ def create_logs_yaml():
 
 
 def logsomething(func: Callable):
-    def wrapper():
+    def wrapper(*args, **kwargs):
         file_name = "logs.yaml"
 
         with open(file_name, "a") as file:
-
             data = {f'some user called for {func.__name__}': f'{datetime.now()}'}
             yaml.dump(data, file)
 
-        func()
-        print('something2')
+        return func(*args, **kwargs)
 
     return wrapper
-
-
-# @logsomething
-# def print_something():
-#     print('incurso')
-
-
-# print_something()
